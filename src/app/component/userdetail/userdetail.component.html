@@ -1,0 +1,31 @@
+<!--<p>
+  userdetail works!
+</p>
+<table>
+  <thead>
+    <tr *ngFor="let i of output">
+      {{i.firstName}}
+    </tr>
+  </thead>
+</table>
+
+<span *ngFor=" let i of output | keys"> 
+  <span *ngFor=" let j of i ">
+    Key: {{j.key}}, value: {{j.value}}
+  </span>
+</span>-->
+<table>
+  <thead>
+    <tr *ngFor=" let i of output | keys">
+      <th *ngFor=" let j of i ">{{j.key}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor=" let i of output | keys">
+      <td *ngFor=" let j of i "> {{j.value}} </td>
+    </tr>
+    <tr *ngIf="count==0" class="nodata">
+            <td>Sorry, No data found</td>
+    </tr>
+  </tbody>
+</table>

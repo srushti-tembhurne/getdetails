@@ -1,3 +1,16 @@
-<h1>
+<!--<h1>
   {{title}}
-</h1>
+</h1>-->
+<div class="main-container">
+  <h1>Get Details</h1>
+  <label> Select a value : </label>
+  <select placeholder="Select a Value" #val (change)="callType(val.value)">
+    <option value="" disabled selected>Select your option</option>
+    <option *ngFor="let value of list" value="{{value.value}}">
+        {{ value.name }}
+    </option>
+  </select>
+  <div class="dynamic-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
