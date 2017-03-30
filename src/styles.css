@@ -1,11 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-
-thead tr{
+ul{list-style-type: none;}
+thead tr,.filterrow,.columns ul,.hide{
     display: none;
 }
-thead tr:first-child{
+thead tr:first-child, .filterrow:first-child{
     display: table-row;
 }
+.columns ul:first-child{display: block;}
 table, th, td {
     border: 1px solid black;
 }

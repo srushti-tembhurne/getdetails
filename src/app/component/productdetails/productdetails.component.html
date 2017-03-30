@@ -1,3 +1,8 @@
+<div *ngIf="progressbar">
+  <h3>Please Wait</h3>
+  <img src="../../../assets/images/ajax-loader.gif" alt="loading" />
+</div>
+
 <table>
   <thead>
     <tr *ngFor=" let i of output | keys">
@@ -5,8 +10,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor=" let i of output | keys">
-      <td *ngFor=" let j of i "> {{j.value}} </td>
+    <tr class="filterrow" *ngFor=" let i of output | keys">
+      <td *ngFor=" let j of i;let i = index">  <input type="text" id="myInput" [attr.index]="i" (keyup)="filter(output,ele);" [attr.colname]="j.key" #ele placeholder="Filter by {{j.key}}"> </td>
+    </tr> 
+    <tr *ngFor=" let i of output | keys" class="data">
+      <td *ngFor=" let j of i"> {{j.value}} </td>
     </tr>
     <tr *ngIf="count==0" class="nodata">
             <td>Sorry, No data found</td>
