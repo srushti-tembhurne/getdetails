@@ -3,18 +3,33 @@
   <img src="../../../assets/images/ajax-loader.gif" alt="loading" />
 </div>
 
-<table>
+<div class="column-selector" [ngClass]="{'hide':!error}" *ngIf="!progressbar">
+  <button (click)="toggleselector()">Select Column</button>
+  <div class="columns" [ngClass]="{'hide':selector}">
+    <ul *ngFor=" let i of output | keys">
+      <li *ngFor=" let j of i">
+        <input type="checkbox" [attr.column-name]='j.key' #check (change)="checkbox(table,check)" /> {{j.key}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="error" [ngClass]="{'hide':error}">
+  <label>An error has occured, Please try after some time.</label>
+</div>
+
+<table #table>
   <thead>
     <tr *ngFor=" let i of output | keys">
-      <th *ngFor=" let j of i ">{{j.key}}</th>
+      <th *ngFor=" let j of i " [attr.column-name]='j.key'>{{j.key}}</th>
     </tr>
   </thead>
   <tbody>
     <tr class="filterrow" *ngFor=" let i of output | keys">
-      <td *ngFor=" let j of i;let i = index">  <input type="text" id="myInput" [attr.index]="i" (keyup)="filter(output,ele);" [attr.colname]="j.key" #ele placeholder="Filter by {{j.key}}"> </td>
+      <td *ngFor=" let j of i;let i = index" [attr.column-name]='j.key'>  <input type="text" id="myInput" [attr.index]="i" (keyup)="filter(output,ele);" [attr.colname]="j.key" #ele placeholder="Filter by {{j.key}}"> </td>
     </tr> 
     <tr *ngFor=" let i of output | keys" class="data">
-      <td *ngFor=" let j of i"> {{j.value}} </td>
+      <td *ngFor=" let j of i" [attr.column-name]='j.key'> {{j.value}} </td>
     </tr>
     <tr *ngIf="count==0" class="nodata">
             <td>Sorry, No data found</td>

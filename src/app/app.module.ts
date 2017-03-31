@@ -10,12 +10,13 @@ import {CommonService} from './service/common.service';
 import { UserdetailComponent } from './component/userdetail/userdetail.component';
 import { ProductdetailsComponent } from './component/productdetails/productdetails.component';
 import {KeysPipe} from './pipe/key.pipe';
+import { HideColumnDirective } from './Shared/hide-column.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserdetailComponent,
-    ProductdetailsComponent,KeysPipe
+    ProductdetailsComponent,KeysPipe, HideColumnDirective
   ],
   imports: [
     BrowserModule,

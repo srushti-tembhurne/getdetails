@@ -6,7 +6,23 @@ thead tr,.filterrow,.columns ul,.hide{
 thead tr:first-child, .filterrow:first-child{
     display: table-row;
 }
-.columns ul:first-child{display: block;}
+.columns ul{
+    padding: 10px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.columns:before{
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ccc;
+    height: 6px;
+    width: 0px;
+    content: "";
+    position: absolute;
+    left: 40px;
+}
+.columns ul:first-child{display: inline-block;}
 table, th, td {
     border: 1px solid black;
 }
@@ -28,4 +44,9 @@ tr:nth-child(even) {
 }
 .dynamic-content{
     margin-top:2%;
+}
+.column-selector{
+    margin-bottom: 10px;
+    text-align: left;
+    position: relative;
 }

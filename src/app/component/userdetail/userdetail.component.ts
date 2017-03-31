@@ -15,6 +15,9 @@ export class UserdetailComponent implements OnInit {
   output:any;
   count:number;
   progressbar:boolean=true;
+  selector:boolean=true;
+  error:boolean=true;
+  stockArray:string[]=[];
   constructor(private CS: CommonService, private ele : ElementRef) { 
   }
   
@@ -32,6 +35,10 @@ export class UserdetailComponent implements OnInit {
       err => {
         this.progressbar = !this.progressbar;
         console.log(err);
+        if(err.status !== 200){
+          this.error = false;
+        }
+        else{this.error=true;}
       }
     );
   }
@@ -40,10 +47,8 @@ export class UserdetailComponent implements OnInit {
    var filter = input.value.toUpperCase();
    var table = this.ele.nativeElement;
    var tr = table.getElementsByClassName('data');
-   console.log(tr);
     for (let i = 0; i < tr.length; i++) {
    var td = tr[i].getElementsByTagName("td")[index];
-    console.log(td);
     if (td) {
       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
@@ -52,6 +57,33 @@ export class UserdetailComponent implements OnInit {
       }
     }       
   }
-  }
+}
+
+toggleselector(){
+    this.selector = !this.selector;
+ }
+
+checkbox(table,check){
+  
+  check.selected = (check.selected) ? false : true;
+   
+    var chk_colname = check.getAttribute('column-name');
+    if(check.selected)
+    {
+      this.stockArray.push(chk_colname);
+    }else{
+      this.stockArray.splice(this.stockArray.indexOf(chk_colname),1);
+    }
+    var ele = table.querySelectorAll('[column-name]').forEach(item=>{
+      let tt=item.getAttribute('column-name');
+      if( (this.stockArray.indexOf(tt)>-1))
+      {
+        item.style.display="none";
+      }else{
+        item.style.display="";
+      }
+   }); 
+
+ }
 
 }
